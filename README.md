@@ -1,6 +1,16 @@
 ## gmx
 
-A Golang based implementation of genmax.
+A Golang based implementation of genmax. This is a code/file generation tool that feeds data into templates. This can be used for scaffolding projects.
+
+#### Installation
+
+If you have Golang installed using below command.
+
+```bash
+go install github.com/razaibi/gmx
+```
+
+Alternatively, you can visit the [Releases](https://github.com/razaibi/gmx/releases) page for platform specific files.
 
 #### Commands
 
