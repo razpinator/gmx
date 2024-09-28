@@ -24,3 +24,5 @@ go.work.sum
 # env file
 .env
 dist/
+release_local.sh
+release_prod.sh
