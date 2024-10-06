@@ -53,9 +53,21 @@ var initCmd = &cobra.Command{
 
 		sampleWorkflowPath := filepath.Join("_gmx", "workflows", "workflow.yaml")
 		content = `items:
-  - dataFile: data.json
+  - action: generate
+  	dataFile: data.json
     templateFile: template.liquid
-    outputFile: output1.txt`
+    outputFile: output1.txt
+
+  - action: create-file
+	content: "Sample content."
+    outputFile: sample-file-created.txt
+
+  - action: exec
+	cmd: "ls"
+
+  - action: download
+	source: "https://raw.githubusercontent.com/snippington/snp-go-basic/refs/heads/main/.gitignore"
+	`
 		// Call the function to create the file with content
 		err = createFileWithContent(sampleWorkflowPath, content)
 		if err != nil {
