@@ -7,10 +7,10 @@ A Golang based implementation of genmax. This is a code/file generation tool tha
 If you have Golang installed using below command.
 
 ```bash
-go install github.com/razaibi/gmx
+go install github.com/razpinator/gmx
 ```
 
-Alternatively, you can visit the [Releases](https://github.com/razaibi/gmx/releases) page for platform specific files.
+Alternatively, you can visit the [Releases](https://github.com/razpinator/gmx/releases) page for platform specific files.
 
 #### Commands
 
