@@ -46,6 +46,58 @@ go install github.com/razpinator/gmx@latest
 
 Alternatively, you can visit the [Releases](https://github.com/razpinator/gmx/releases) page for platform specific files.
 
+#### Uninstallation
+
+**Quick Uninstall (Recommended):**
+
+**Linux/macOS:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/razpinator/gmx/main/uninstall.sh | bash
+```
+
+**Windows (PowerShell):**
+```powershell
+iwr -useb https://raw.githubusercontent.com/razpinator/gmx/main/uninstall.ps1 | iex
+```
+
+**Go-based Uninstaller:**
+
+If you have the Go installer available:
+```bash
+# Using the installer binary
+installer uninstall
+
+# Or install and run the uninstaller
+go install github.com/razpinator/gmx/installer@latest
+$(go env GOPATH)/bin/installer uninstall
+```
+
+**Manual Uninstallation:**
+
+1. **Remove the binary:**
+   ```bash
+   # If installed via go install
+   rm $(go env GOPATH)/bin/gmx
+   
+   # If installed to custom location
+   rm /path/to/gmx
+   ```
+
+2. **Clean Go module cache:**
+   ```bash
+   go clean -modcache github.com/razpinator/gmx
+   ```
+
+3. **Remove PATH configuration (if added by installer):**
+   - **Linux/macOS:** Remove the export line from `~/.bashrc`, `~/.zshrc`, or your shell config
+   - **Windows:** Remove the Go bin directory from your system PATH
+
+**What gets removed:**
+- ✅ GMX binary from installation directory
+- ✅ Go module cache entries
+- ✅ PATH configuration added by installer scripts
+- ✅ Automatic backup of shell config files
+
 #### Commands
 
 | Command | Description |

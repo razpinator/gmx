@@ -25,6 +25,12 @@ go build -o gmx-installer .
 ./gmx-installer
 ```
 
+### Uninstall GMX
+
+```bash
+./gmx-installer uninstall
+```
+
 ## How It Works
 
 1. **Go Detection**: Checks if Go is installed on the system
@@ -33,6 +39,15 @@ go build -o gmx-installer .
    - If Go is not available: Downloads appropriate binary from GitHub releases
 3. **PATH Configuration**: Automatically configures PATH and provides guidance
 4. **Verification**: Tests the installation to ensure gmx works correctly
+
+## Uninstallation
+
+The installer also includes uninstall functionality:
+
+1. **Automatic Removal**: Finds and removes gmx from common installation locations
+2. **Cache Cleanup**: Cleans Go module cache entries
+3. **PATH Cleanup**: Provides guidance for removing PATH configurations
+4. **Verification**: Confirms gmx has been successfully removed
 
 ## Installation Locations
 

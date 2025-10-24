@@ -31,6 +31,11 @@ type Asset struct {
 }
 
 func main() {
+	if len(os.Args) > 1 && os.Args[1] == "uninstall" {
+		uninstallGMX()
+		return
+	}
+
 	fmt.Println("🚀 GMX Go-based Installer")
 	fmt.Println("========================")
 
@@ -308,5 +313,98 @@ func printUsage() {
 	fmt.Println("  gmx init           - Initialize a new project")
 	fmt.Println("  gmx run <workflow> - Run a workflow")
 	fmt.Println("  gmx --help         - Show help")
+	fmt.Println("\n🗑️  To uninstall:")
+	fmt.Println("  installer uninstall - Remove gmx from your system")
 	fmt.Println("\n🌟 Happy coding with GMX!")
+}
+
+func uninstallGMX() {
+	fmt.Println("🗑️  GMX Uninstaller")
+	fmt.Println("==================")
+
+	removed := false
+
+	// Find and remove gmx binary
+	binaryName := "gmx"
+	if runtime.GOOS == "windows" {
+		binaryName += ".exe"
+	}
+
+	// Check common installation locations
+	locations := []string{}
+
+	// Add Go bin directory if available
+	if isGoAvailable() {
+		cmd := exec.Command("go", "env", "GOPATH")
+		if output, err := cmd.Output(); err == nil {
+			gopath := strings.TrimSpace(string(output))
+			locations = append(locations, filepath.Join(gopath, "bin"))
+		}
+	}
+
+	// Add other common locations
+	homeDir, _ := os.UserHomeDir()
+	locations = append(locations,
+		filepath.Join(homeDir, ".local", "bin"),
+		filepath.Join(homeDir, "bin"),
+		"/usr/local/bin",
+		"/usr/bin",
+	)
+
+	// Try to remove from each location
+	for _, location := range locations {
+		binaryPath := filepath.Join(location, binaryName)
+		if _, err := os.Stat(binaryPath); err == nil {
+			fmt.Printf("📍 Found gmx at: %s\n", binaryPath)
+			if err := os.Remove(binaryPath); err != nil {
+				fmt.Printf("❌ Failed to remove %s: %v\n", binaryPath, err)
+				if runtime.GOOS != "windows" {
+					fmt.Printf("💡 Try: sudo rm %s\n", binaryPath)
+				}
+			} else {
+				fmt.Printf("✅ Removed gmx from %s\n", location)
+				removed = true
+			}
+		}
+	}
+
+	// Try to remove using go clean if available
+	if isGoAvailable() {
+		fmt.Println("\n🧹 Cleaning Go module cache...")
+		cmd := exec.Command("go", "clean", "-modcache", "github.com/razpinator/gmx")
+		if err := cmd.Run(); err == nil {
+			fmt.Println("✅ Cleaned Go module cache")
+		}
+	}
+
+	// Check if gmx is still in PATH
+	fmt.Println("\n🔍 Checking if gmx is still accessible...")
+	if _, err := exec.LookPath(binaryName); err != nil {
+		fmt.Println("✅ gmx is no longer in PATH")
+		removed = true
+	} else {
+		fmt.Println("⚠️  gmx is still in PATH - you may need to restart your terminal")
+	}
+
+	if removed {
+		fmt.Println("\n✅ GMX has been successfully uninstalled!")
+		fmt.Println("\n💡 Note: You may want to manually remove these from your shell config:")
+
+		switch runtime.GOOS {
+		case "windows":
+			fmt.Println("   - Go bin directory from your system PATH")
+		case "darwin", "linux":
+			shell := os.Getenv("SHELL")
+			if strings.Contains(shell, "zsh") {
+				fmt.Println("   - PATH export lines from ~/.zshrc")
+			} else {
+				fmt.Println("   - PATH export lines from ~/.bashrc")
+			}
+		}
+
+		fmt.Println("\n👋 Thanks for using GMX!")
+	} else {
+		fmt.Println("\n❌ No gmx installation found to remove")
+		fmt.Println("💡 gmx may have been installed manually or to a custom location")
+	}
 }
