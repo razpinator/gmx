@@ -1,7 +1,7 @@
 # If you prefer the allow list template instead of the deny list, see community template:
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
 #
-# Binaries for programs and plugins
+# Binary for programs and plugins
 *.exe
 *.exe~
 *.dll
@@ -35,3 +35,7 @@ release_prod.sh
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Installer binaries
+installer/gmx-installer
+installer/gmx-installer-*

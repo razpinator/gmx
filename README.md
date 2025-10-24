@@ -16,6 +16,24 @@ curl -fsSL https://raw.githubusercontent.com/razpinator/gmx/main/install.sh | ba
 iwr -useb https://raw.githubusercontent.com/razpinator/gmx/main/install.ps1 | iex
 ```
 
+**Go-based Installer:**
+
+For users who prefer a native Go installer, you can use the Go-based installer:
+
+```bash
+# Download and run the Go installer
+go install github.com/razpinator/gmx/installer@latest
+gmx-installer
+```
+
+Or build from source:
+```bash
+git clone https://github.com/razpinator/gmx.git
+cd gmx/installer
+go build -o gmx-installer .
+./gmx-installer
+```
+
 **Manual Installation:**
 
 If you have Golang installed using below command.
