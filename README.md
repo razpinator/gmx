@@ -4,11 +4,27 @@ A Golang based implementation of genmax. This is a code/file generation tool tha
 
 #### Installation
 
+**Quick Install (Recommended):**
+
+**Linux/macOS:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/razpinator/gmx/main/install.sh | bash
+```
+
+**Windows (PowerShell):**
+```powershell
+iwr -useb https://raw.githubusercontent.com/razpinator/gmx/main/install.ps1 | iex
+```
+
+**Manual Installation:**
+
 If you have Golang installed using below command.
 
 ```bash
-go install github.com/razpinator/gmx
+go install github.com/razpinator/gmx@latest
 ```
+
+*Note: After manual installation, you may need to add `$(go env GOPATH)/bin` to your PATH.*
 
 Alternatively, you can visit the [Releases](https://github.com/razpinator/gmx/releases) page for platform specific files.
 
