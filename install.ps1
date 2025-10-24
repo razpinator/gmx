@@ -40,6 +40,13 @@ try {
 Write-Host ""
 Write-ColorText "Installing gmx using 'go install'..." "Cyan"
 
+# Set GOTMPDIR to user's temp directory to avoid permission issues
+$userTemp = Join-Path $env:USERPROFILE ".cache\go-build"
+if (!(Test-Path $userTemp)) {
+    New-Item -ItemType Directory -Path $userTemp -Force | Out-Null
+}
+$env:GOTMPDIR = $userTemp
+
 try {
     go install github.com/razpinator/gmx@latest
     Write-ColorText "✓ gmx installed successfully" "Green"

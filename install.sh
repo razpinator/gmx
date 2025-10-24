@@ -30,6 +30,11 @@ echo -e "Detected OS: ${YELLOW}$OS${NC}"
 echo -e "Detected Architecture: ${YELLOW}$ARCH${NC}"
 echo ""
 
+# Clean up any previous failed build directories
+echo -e "${BLUE}Cleaning up any previous build artifacts...${NC}"
+rm -rf /var/folders/*/T/go-build* 2>/dev/null || true
+rm -rf "$HOME/.cache/go-build" 2>/dev/null || true
+
 # Check if Go is installed
 if command -v go &> /dev/null; then
     echo -e "${GREEN}✓${NC} Go is installed"
@@ -38,7 +43,28 @@ if command -v go &> /dev/null; then
     
     # Install using go install (preferred method)
     echo -e "\n${BLUE}Installing gmx using 'go install'...${NC}"
-    go install github.com/razpinator/gmx@latest
+    
+    # Set GOTMPDIR to user's home to avoid permission issues
+    export GOTMPDIR="$HOME/.cache/go-build"
+    mkdir -p "$GOTMPDIR"
+    
+    # Try to install gmx
+    if go install github.com/razpinator/gmx@latest; then
+        echo -e "${GREEN}✓${NC} Installation successful"
+    else
+        echo -e "${YELLOW}!${NC} Installation failed, trying with alternative temp directory..."
+        # Try with /tmp as fallback
+        export GOTMPDIR="/tmp/go-build-$(whoami)"
+        mkdir -p "$GOTMPDIR"
+        if go install github.com/razpinator/gmx@latest; then
+            echo -e "${GREEN}✓${NC} Installation successful with alternative temp directory"
+        else
+            echo -e "${RED}✗${NC} Installation failed"
+            echo -e "${YELLOW}Please try running: sudo chmod 755 /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/go-build*${NC}"
+            echo -e "${YELLOW}Or manually install with: go install github.com/razpinator/gmx@latest${NC}"
+            exit 1
+        fi
+    fi
     
     # Get Go paths
     GOPATH=$(go env GOPATH)
