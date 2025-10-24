@@ -1,0 +1,28 @@
+# Arch Linux AUR PKGBUILD
+# Maintainer: razpinator <your-email@example.com>
+pkgname=gmx
+pkgver=0.0.8
+pkgrel=1
+pkgdesc="A Golang based code/file generation tool that feeds data into templates"
+arch=('x86_64' 'aarch64')
+url="https://github.com/razpinator/gmx"
+license=('MIT')
+depends=()
+makedepends=('go')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/razpinator/gmx/archive/v$pkgver.tar.gz")
+sha256sums=('YOUR_SHA256_HERE')
+
+build() {
+    cd "$pkgname-$pkgver"
+    export CGO_CPPFLAGS="${CPPFLAGS}"
+    export CGO_CFLAGS="${CFLAGS}"
+    export CGO_CXXFLAGS="${CXXFLAGS}"
+    export CGO_LDFLAGS="${LDFLAGS}"
+    export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
+    go build -o gmx .
+}
+
+package() {
+    cd "$pkgname-$pkgver"
+    install -Dm755 gmx "$pkgdir/usr/bin/gmx"
+}

@@ -45,3 +45,37 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+
+# Homebrew tap
+brews:
+  - name: gmx
+    repository:
+      owner: razpinator
+      name: homebrew-tap
+    homepage: "https://github.com/razpinator/gmx"
+    description: "A Golang based code/file generation tool that feeds data into templates"
+    license: "MIT"
+    test: |
+      system "#{bin}/gmx --help"
+
+# Scoop bucket
+scoops:
+  - name: gmx
+    repository:
+      owner: razpinator
+      name: scoop-bucket
+    homepage: "https://github.com/razpinator/gmx"
+    description: "A Golang based code/file generation tool that feeds data into templates"
+    license: "MIT"
+
+# Linux packages
+nfpms:
+  - package_name: gmx
+    homepage: "https://github.com/razpinator/gmx"
+    description: "A Golang based code/file generation tool that feeds data into templates"
+    maintainer: "razpinator <your-email@example.com>"
+    license: "MIT"
+    formats:
+      - deb
+      - rpm
+      - apk

@@ -4,7 +4,57 @@ A Golang based implementation of genmax. This is a code/file generation tool tha
 
 #### Installation
 
-**Quick Install (Recommended):**
+**Package Managers (Recommended):**
+
+**Homebrew (macOS/Linux):**
+```bash
+# Install
+brew install razpinator/tap/gmx
+
+# Uninstall
+brew uninstall gmx
+```
+
+**Scoop (Windows):**
+```powershell
+# Install
+scoop bucket add razpinator https://github.com/razpinator/scoop-bucket
+scoop install gmx
+
+# Uninstall
+scoop uninstall gmx
+```
+
+**APT (Ubuntu/Debian):**
+```bash
+# Download and install .deb package from releases
+curl -LO https://github.com/razpinator/gmx/releases/latest/download/gmx_linux_amd64.deb
+sudo dpkg -i gmx_linux_amd64.deb
+
+# Uninstall
+sudo apt remove gmx
+```
+
+**RPM (RHEL/CentOS/Fedora):**
+```bash
+# Download and install .rpm package from releases
+curl -LO https://github.com/razpinator/gmx/releases/latest/download/gmx_linux_amd64.rpm
+sudo rpm -i gmx_linux_amd64.rpm
+
+# Uninstall
+sudo rpm -e gmx
+```
+
+**AUR (Arch Linux):**
+```bash
+# Using yay or your preferred AUR helper
+yay -S gmx
+
+# Uninstall
+yay -R gmx
+```
+
+**Quick Install Scripts:**
 
 **Linux/macOS:**
 ```bash
@@ -18,7 +68,7 @@ iwr -useb https://raw.githubusercontent.com/razpinator/gmx/main/install.ps1 | ie
 
 **Go-based Installer:**
 
-For users who prefer a native Go installer, you can use the Go-based installer:
+For users who prefer a native Go installer:
 
 ```bash
 # Download and run the Go installer
@@ -48,7 +98,26 @@ Alternatively, you can visit the [Releases](https://github.com/razpinator/gmx/re
 
 #### Uninstallation
 
-**Quick Uninstall (Recommended):**
+**Package Managers (Easiest):**
+
+```bash
+# Homebrew
+brew uninstall gmx
+
+# Scoop (Windows)
+scoop uninstall gmx
+
+# APT (Ubuntu/Debian)
+sudo apt remove gmx
+
+# RPM (RHEL/CentOS/Fedora) 
+sudo rpm -e gmx
+
+# AUR (Arch Linux)
+yay -R gmx
+```
+
+**Quick Uninstall Scripts:**
 
 **Linux/macOS:**
 ```bash

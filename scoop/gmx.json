@@ -1,0 +1,39 @@
+{
+    "version": "0.0.8",
+    "description": "A Golang based code/file generation tool that feeds data into templates",
+    "homepage": "https://github.com/razpinator/gmx",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/razpinator/gmx/releases/download/v0.0.8/gmx_windows_amd64.zip",
+            "hash": "YOUR_HASH_HERE",
+            "bin": "gmx.exe"
+        },
+        "32bit": {
+            "url": "https://github.com/razpinator/gmx/releases/download/v0.0.8/gmx_windows_386.zip",
+            "hash": "YOUR_HASH_HERE",
+            "bin": "gmx.exe"
+        },
+        "arm64": {
+            "url": "https://github.com/razpinator/gmx/releases/download/v0.0.8/gmx_windows_arm64.zip",
+            "hash": "YOUR_HASH_HERE",
+            "bin": "gmx.exe"
+        }
+    },
+    "checkver": {
+        "github": "https://github.com/razpinator/gmx"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/razpinator/gmx/releases/download/v$version/gmx_windows_amd64.zip"
+            },
+            "32bit": {
+                "url": "https://github.com/razpinator/gmx/releases/download/v$version/gmx_windows_386.zip"
+            },
+            "arm64": {
+                "url": "https://github.com/razpinator/gmx/releases/download/v$version/gmx_windows_arm64.zip"
+            }
+        }
+    }
+}
