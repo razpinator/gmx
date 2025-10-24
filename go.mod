@@ -1,4 +1,4 @@
-module github.com/razaibi/gmx
+module github.com/razpinator/gmx
 
 go 1.22.3
 

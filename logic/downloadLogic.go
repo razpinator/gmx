@@ -7,7 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/razaibi/gmx/models"
+	"github.com/razpinator/gmx/models"
 )
 
 func DownloadFile(item models.Item) error {

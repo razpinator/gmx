@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/razaibi/gmx/models"
+	"github.com/razpinator/gmx/models"
 	"gopkg.in/yaml.v2"
 )
 

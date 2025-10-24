@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/osteele/liquid"
-	"github.com/razaibi/gmx/models"
+	"github.com/razpinator/gmx/models"
 )
 
 func GenerateFile(item models.Item) {

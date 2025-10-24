@@ -4,7 +4,7 @@ import (
 	"log"
 	"path/filepath"
 
-	"github.com/razaibi/gmx/logic"
+	"github.com/razpinator/gmx/logic"
 
 	"github.com/spf13/cobra"
 )
